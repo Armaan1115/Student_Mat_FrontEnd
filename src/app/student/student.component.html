@@ -1,0 +1,36 @@
+<mat-card>
+  <form name="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="col-12">
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Name" ngModel name="name" formControlName="name"  />
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input type="text" matInput placeholder="Address" name="address" formControlName="address"/>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" ngModel name="email" formControlName="email" />
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input type="number" matInput placeholder="Phone Number" name="phoneNumber" formControlName="phoneNumber"/>
+              </mat-form-field>
+        </div>
+        <div class="col">
+ <mat-form-field class="example-full-width">
+      <input type="text" matInput placeholder="Date Of Birth" name="dob" formControlName="dob" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input type="text" matInput placeholder="Department" name="department" formControlName="department"/>
+    </mat-form-field>
+    <mat-radio-group formControlName="gender">
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+      </mat-radio-group>
+    <div class="example-button">
+        <button class="submit" mat-raised-button color="warn">Submit</button>
+      <button class="reset" mat-raised-button color="primary" type="reset">Reset</button>
+    </div>
+        </div>
+        </div>
+  </form>
+</mat-card>
