@@ -1,0 +1,24 @@
+<span class="LoginForm">
+<h1 class="text-primary text-center">Login Here</h1>
+  <div class="text-center">
+    <form name="form" [formGroup]="LoginForm" (ngSubmit)="onSubmit()" novalidate>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="abc@example.com" formControlName="email" >
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <div class="example-button">
+        <button class="btn btn-primary" id="Login" (click)="LoginUser()">Login</button>
+        <button class="btn btn-dark" id="Register" (click)="RegisterClick()">Register</button>
+      </div>
+    </form>
+  </div>
+</span>

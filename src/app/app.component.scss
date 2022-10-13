@@ -1,3 +1,19 @@
 .example-spacer {
     flex: 1 1 auto;
   }
+  .mat-raised-button{
+    margin: 0 0 0 80%;
+}
+
+  button {
+    width: 9em;
+    height: 40px;
+    border-radius: 0px;
+    margin: 0 7px 0 7px;
+    background-color:black;
+}
+button:hover{
+  background-color: white;
+  color: black;
+font-weight: bolder;  
+}

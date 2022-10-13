@@ -17,9 +17,9 @@ export class StudentService
   {
     return this.httpClient.post<Student>(this.baseUrl,newStudent);
   }
-  updateStudent(editStudent:Student):Observable<Student>
+  updateStudent(data:any,id:number)
   {
-    return this.httpClient.put<Student>(this.baseUrl,editStudent);
+    return this.httpClient.put<Student>("https://localhost:44354/api/Student/" + id,data);
   }
   deleteStudent(id:number):Observable<any>
   {

@@ -7,6 +7,7 @@ export class Student {
     dob: any;
     gender: any;
     department:any
+
    
   
     constructor() {

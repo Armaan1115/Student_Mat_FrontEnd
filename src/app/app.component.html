@@ -1,6 +1,7 @@
-<mat-toolbar color="warn">
-  <span>Student Management</span>
-</mat-toolbar>
-  <div>
-    <app-student></app-student>
-  </div>
+<mat-toolbar *ngIf="isAuthorized()==true" color="primary">
+    <span>Student Management</span>
+    <button mat-raised-button color="warn" (click)="SignOutClick()">Sign Out</button>
+  </mat-toolbar>
+  <div class="IndexAll">
+  <router-outlet></router-outlet>
+</div>

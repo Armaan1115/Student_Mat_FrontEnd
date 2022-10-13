@@ -1,1 +1,23 @@
-<p>register works!</p>
+  <h1 class="text-primary text-center">Registration Form</h1>
+<div class="text-center ">
+  <form name="form" [formGroup]="SignUpForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Name" matInput name="name" formControlName="name" />
+    </mat-form-field><br>
+    <mat-form-field class="example-full-width">
+      <input type="number" matInput placeholder="Phone Number" matInput name="phoneNumber"
+        formControlName="phoneNumber" />
+    </mat-form-field><br>
+    <mat-form-field class="example-full-width">
+      <input type="email" matInput placeholder="Email" matInput name="email" formControlName="email" />
+    </mat-form-field><br>
+    <mat-form-field class="example-full-width">
+      <input matInput type="password" placeholder="Password" matInput name="password" formControlName="password" />
+    </mat-form-field><br>
+
+    <div class="example-button">
+      <button class="btn btn-danger" id="signup" (click)="RegisterUser()">Signup</button>
+      <button class="btn btn-dark" id="backtologin" (click)="BackToLogin()">Back To Login</button>
+    </div>
+  </form>
+</div>
