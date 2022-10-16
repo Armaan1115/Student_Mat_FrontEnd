@@ -26,9 +26,15 @@ export class RegisterComponent implements OnInit {
     })
   }
   RegisterUser(){
-    this.registerService.registerUser(this.SignUpForm.value).subscribe(Response=>{
-      this.router.navigateByUrl("student") 
-    })
+    this.registerService.registerUser(this.SignUpForm.value).subscribe(
+      (Response)=>{
+      this.router.navigateByUrl("/student"); 
+    },
+    (error)=>{
+     console.log(error);
+    }
+    )
+    
   }
   onSubmit() {console.log(this.model);}
      getErrorMessage() {

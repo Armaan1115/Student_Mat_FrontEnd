@@ -1,9 +1,11 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { StudentService } from './student.service';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import Swal from 'sweetalert2'
 declare var $: any;
 @Component({
   selector: 'app-student',
@@ -20,6 +22,8 @@ export class StudentComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   updateBTN: boolean = false ;
   submitBTN: boolean = true ;
+  startDate = new Date(1990, 0, 1);
+
 
   constructor(private formBuilder:FormBuilder,private studentService:StudentService) { }
   
@@ -34,6 +38,18 @@ export class StudentComponent implements OnInit {
       email:['',[Validators.required,Validators.email]],
       gender:['',Validators.required],  
       department:['',Validators.required],  
+    })
+    $(document).ready(function(){
+      $('.StudentForm').hide();
+      $('#AddStudent').click(function(){
+        $('.StudentForm').show(function(){
+          $('.StudentForm').slideDown();
+        });
+      })
+      $('#reset').click(function(){
+        $('.StudentForm').slideUp(1000);
+      })
+      
     })
   }
   GetAllStudent(){
@@ -54,8 +70,8 @@ export class StudentComponent implements OnInit {
       this.studentService.saveStudent(this.StudentForm.value).subscribe({
         next:(Response)=>{
           alert('Data Saved')
-          this.StudentForm.reset();
-          console.log(this.StudentForm.value);
+          // this.StudentForm.reset();
+          window.location.reload();
           this.GetAllStudent();
         },
         error:()=>{
@@ -83,8 +99,9 @@ export class StudentComponent implements OnInit {
     if(this.StudentForm.valid){
     this.studentService.updateStudent(this.StudentForm.value,this.editData.id)
     .subscribe({next:(Response)=>{
-  alert('Data Updated')
-  this.StudentForm.reset();
+     
+  window.location.reload();
+  // this.StudentForm.reset();
   this.GetAllStudent();
   this.updateBTN = false;
     this.submitBTN=true;
@@ -94,8 +111,10 @@ error:()=>{
 }
     })
   }
-}
+  }
   DeleteStudent(id:number){
+    let ans = confirm(" Are You Sure Want To Delete Data")
+    if (!ans) return;
 this.studentService.deleteStudent(id).subscribe({next:(Response)=>{
   alert('Data Deleted')
   this.GetAllStudent();

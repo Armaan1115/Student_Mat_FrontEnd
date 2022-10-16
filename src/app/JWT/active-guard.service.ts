@@ -14,7 +14,7 @@ export class ActiveGuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean
   {
     var token=sessionStorage.getItem('token');
-    if(token)
+    if(token != null)
     {
       return true
     }   
