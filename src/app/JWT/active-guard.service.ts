@@ -11,7 +11,7 @@ export class ActiveGuardService implements CanActivate {
 
   constructor(private loginService:LoginService, private router:Router, private jwthealperService:JwtHelperService) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean
+  canActivate():boolean
   {
     var token=sessionStorage.getItem('token');
     if(token != null)

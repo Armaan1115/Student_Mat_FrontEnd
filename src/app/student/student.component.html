@@ -2,11 +2,12 @@
   &nbsp; Add New Student</button>
   
 <div class="StudentForm">
-  <form name="form" [formGroup]="StudentForm" (ngSubmit)="onSubmit()" novalidate>
+  <form name="form" #ngForm="ngForm" [formGroup]="StudentForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="col-12">
         <div class="col">
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="Name" name="name" formControlName="name"  />
+                <mat-hint >*Name is Required</mat-hint>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <input type="text" matInput placeholder="Address" name="address" formControlName="address"/>
@@ -34,7 +35,7 @@
           <mat-option value="HR">HR</mat-option>
         </mat-select>
       </mat-form-field>
-    <mat-radio-group formControlName="gender">
+    <mat-radio-group [ngClass]="{'invalid': ngForm.submitted && StudentForm.get('gender')?.invalid}" formControlName="gender">
         <mat-radio-button value="Male">Male</mat-radio-button> &nbsp;&nbsp;
         <mat-radio-button value="Female">Female</mat-radio-button>
       </mat-radio-group>

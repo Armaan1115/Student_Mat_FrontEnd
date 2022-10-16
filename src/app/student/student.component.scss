@@ -12,6 +12,12 @@
 table {
   width: 100%;
 }
+.invalid{
+  color:#f44336;
+}
+mat-radio-button{
+  font-weight: bolder;
+}
 .FilterHorizontalRow{
   font-size: 14px;
   width: 100%;

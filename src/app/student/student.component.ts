@@ -1,7 +1,8 @@
+import { Register } from './../register/register';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { StudentService } from './student.service';
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormsModule, FormControl } from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -23,7 +24,7 @@ export class StudentComponent implements OnInit {
   updateBTN: boolean = false ;
   submitBTN: boolean = true ;
   startDate = new Date(1990, 0, 1);
-
+  submitted = false;
 
   constructor(private formBuilder:FormBuilder,private studentService:StudentService) { }
   
@@ -39,18 +40,35 @@ export class StudentComponent implements OnInit {
       gender:['',Validators.required],  
       department:['',Validators.required],  
     })
+    
     $(document).ready(function(){
-      $('.StudentForm').hide();
+    $('.StudentForm').hide();
+      AddButton();
+      reset();
+      EditButton()
+      
+      
+    })
+    function AddButton(){
+
       $('#AddStudent').click(function(){
         $('.StudentForm').show(function(){
           $('.StudentForm').slideDown();
         });
       })
+    }
+    function reset(){
       $('#reset').click(function(){
         $('.StudentForm').slideUp(1000);
       })
-      
-    })
+    }
+    function EditButton(){
+      $(document).ready(function(){
+        $('#edit').click(function(){
+          $('.StudentForm').slideDown();
+        })
+      })
+    }
   }
   GetAllStudent(){
   this.studentService.GetAllStudent().subscribe({
@@ -130,6 +148,10 @@ this.studentService.deleteStudent(id).subscribe({next:(Response)=>{
     }
   }
   onSubmit() {
-    console.log(this.model);
+    this.submitted=true;
+    if(this.StudentForm.invalid){
+      return;
     }
+    }
+    
 }
